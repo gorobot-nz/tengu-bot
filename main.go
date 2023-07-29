@@ -2,13 +2,13 @@ package main
 
 import (
 	"fmt"
+	"github.com/gorobot-nz/tengu-bot/internal"
+	"github.com/gorobot-nz/tengu-bot/internal/bot"
 	"github.com/joho/godotenv"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"os"
 	"strconv"
-
-	"github.com/gorobot-nz/tengu-bot/internal"
 )
 
 var logger *zap.Logger
@@ -29,5 +29,8 @@ func init() {
 }
 
 func main() {
+	token := os.Getenv("TOKEN")
 
+	tenguBot := bot.NewTenguBot(logger, token)
+	tenguBot.Start()
 }
